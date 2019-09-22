@@ -88,7 +88,7 @@ function effects(pixels) {
 
   const levels = {};
 
-  document.querySelectorAll(".rgb > input").forEach(input => {
+  document.querySelectorAll(".filter > input").forEach(input => {
     levels[input.name] = input.value;
   });
 
