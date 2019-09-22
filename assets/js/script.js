@@ -1,8 +1,14 @@
 const video = document.querySelector(".player");
 const canvas = document.querySelector(".photo");
 const context = canvas.getContext("2d");
+let bgImg = null;
+const bgColor = document.getElementById("bgColor");
+const toggleBtn = document.getElementById("toggleBG");
 const strip = document.querySelector(".strip");
 const snap = document.querySelector(".snap");
+
+let usingImg = false;
+canvas.style.background = bgColor.value;
 
 function getVideo() {
   navigator.mediaDevices.getUserMedia({ video: true, audio: false })
@@ -32,12 +38,27 @@ function uploadBG() {
   const reader = new FileReader();
   
   reader.onloadend = function() {
-    canvas.style.backgroundImage = `url("${reader.result}")`;
+    usingImg = true;
+    toggleBtn.innerText = "Use Background Color";
+    bgImg = `url("${reader.result}")`;
+    canvas.style.background = bgImg;
   }
   
   if (file) {
     reader.readAsDataURL(file);
   }
+}
+
+function updateBGC() {
+  usingImg = false;
+  toggleBtn.innerText = "Use Background Image";
+  canvas.style.background = bgColor.value;
+}
+
+function toggleBG() {
+  usingImg = !usingImg;
+  toggleBtn.innerText = usingImg ? "Use Background Color" : "Use Background Image";
+  canvas.style.background = usingImg ? bgImg : bgColor.value;
 }
 
 function effects(pixels) {

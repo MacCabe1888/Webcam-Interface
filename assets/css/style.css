@@ -27,6 +27,7 @@ html {
 .photo {
   width: 100%;
   float: left;
+  background-color: #808080;
 }
 
 .player {

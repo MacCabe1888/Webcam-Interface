@@ -12,6 +12,9 @@
       <div class="bg">
         <label for="bgImg">Background Image:</label>
         <input type="file" id="bgFile" multiple="false" onChange="uploadBG()">
+        <label for="bgColor">Background Color:</label>
+        <input id="bgColor" type="color" name="bgColor" value="#808080" onChange="updateBGC()">
+        <p><button id="toggleBG" onClick="toggleBG()">Use Background Image</button></p>
       </div>
       <hr>
       <div class="split">
@@ -43,7 +46,7 @@
       </div>
       <hr>
       <div class="blur">
-        <label for="blur">Blur:</label>
+        <label for="blur">Motion Blur:</label>
         <input type="range" min=0 max=90 value=0 name="blur">
       </div>
     </div>
