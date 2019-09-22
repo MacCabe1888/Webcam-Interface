@@ -69,11 +69,13 @@ function effects(pixels) {
 function takePhoto() {
   snap.currentTime = 0;
   snap.play();
-  const link = document.createElement("a");
-  link.href = canvas.toDataURL("image/jpeg");
-  link.setAttribute("download", "handsome");
-  link.innerHTML = `<img src="${link.href}" alt="Handsome">`;
-  strip.insertBefore(link, strip.firstChild);
+  html2canvas(canvas).then(canvas => {
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/jpeg");
+    link.setAttribute("download", "handsome");
+    link.innerHTML = `<img src="${link.href}" alt="Handsome">`;
+    strip.insertBefore(link, strip.firstChild);
+  });
 }
 
 getVideo();
