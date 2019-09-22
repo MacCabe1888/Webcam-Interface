@@ -9,8 +9,8 @@
 
   <div class="photobooth">
     <div class="controls">
-      <button onClick="takePhoto()">Take Photo</button>
       <div class="rgb">
+        <p>Background Image: <input type="file" id="bgFile" multiple="false" onChange="uploadBG()"></p>
         <label for="rmin">Red Min:</label>
         <input type="range" min=0 max=255 value=0 name="rmin">
         <label for="rmax">Red Max:</label>
@@ -25,6 +25,7 @@
         <input type="range" min=0 max=255 value=0 name="bmin">
         <label for="bmax">Blue Max:</label>
         <input type="range" min=0 max=255 value=255 name="bmax">
+        <p><button onClick="takePhoto()">Take Photo</button></p>
       </div>
     </div>
     <canvas class="photo"></canvas>

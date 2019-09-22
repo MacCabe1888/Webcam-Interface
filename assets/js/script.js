@@ -27,14 +27,17 @@ function paintToCanvas() {
   }, 16);
 }
 
-function takePhoto() {
-  snap.currentTime = 0;
-  snap.play();
-  const link = document.createElement("a");
-  link.href = canvas.toDataURL("image/jpeg");
-  link.setAttribute("download", "handsome");
-  link.innerHTML = `<img src="${link.href}" alt="Handsome">`;
-  strip.insertBefore(link, strip.firstChild);
+function uploadBG() {
+  const file = document.getElementById("bgFile").files[0];
+  const reader = new FileReader();
+  
+  reader.onloadend = function() {
+    canvas.style.backgroundImage = `url("${reader.result}")`;
+  }
+  
+  if (file) {
+    reader.readAsDataURL(file);
+  }
 }
 
 function effects(pixels) {
@@ -61,6 +64,16 @@ function effects(pixels) {
   }
 
   return pixels;
+}
+
+function takePhoto() {
+  snap.currentTime = 0;
+  snap.play();
+  const link = document.createElement("a");
+  link.href = canvas.toDataURL("image/jpeg");
+  link.setAttribute("download", "handsome");
+  link.innerHTML = `<img src="${link.href}" alt="Handsome">`;
+  strip.insertBefore(link, strip.firstChild);
 }
 
 getVideo();
