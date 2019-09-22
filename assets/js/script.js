@@ -62,16 +62,22 @@ function toggleBG() {
 }
 
 function effects(pixels) {
+  const tint = {};
+
+  document.querySelectorAll(".tint > input").forEach(input => {
+    tint[input.name] = input.value;
+  });
+
+  for (let i = 0; i < pixels.data.length; i += 4) {
+    pixels.data[i] += (tint.rTint / 100) * (255 - pixels.data[i]);
+    pixels.data[i + 1] += (tint.gTint / 100) * (255 - pixels.data[i + 1]);
+    pixels.data[i + 2] += (tint.bTint / 100) * (255 - pixels.data[i + 2]);
+  }
+
   const split = {};
 
   document.querySelectorAll(".split > input").forEach(input => {
     split[input.name] = input.value;
-  });
-
-  const levels = {};
-
-  document.querySelectorAll(".rgb > input").forEach(input => {
-    levels[input.name] = input.value;
   });
 
   for (let i = 0; i < pixels.data.length; i += 4) {
@@ -79,6 +85,12 @@ function effects(pixels) {
     pixels.data[i + 1 - 4 * (1280 - split.gShift)] = pixels.data[i + 1];
     pixels.data[i + 2 - 4 * (1280 - split.bShift)] = pixels.data[i + 2];
   }
+
+  const levels = {};
+
+  document.querySelectorAll(".rgb > input").forEach(input => {
+    levels[input.name] = input.value;
+  });
 
   for (let i = 0; i < pixels.data.length; i += 4) {
     const red = pixels.data[i + 0];
