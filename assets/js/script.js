@@ -41,6 +41,9 @@ function uploadBG() {
 }
 
 function effects(pixels) {
+  const blur = document.querySelector(".blur > input").value;
+  context.globalAlpha = 1 - blur / 100;
+
   const levels = {};
 
   document.querySelectorAll(".rgb > input").forEach(input => {
