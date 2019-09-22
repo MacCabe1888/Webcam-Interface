@@ -41,14 +41,23 @@ function uploadBG() {
 }
 
 function effects(pixels) {
-  const blur = document.querySelector(".blur > input").value;
-  context.globalAlpha = 1 - blur / 100;
+  const split = {};
+
+  document.querySelectorAll(".split > input").forEach(input => {
+    split[input.name] = input.value;
+  });
 
   const levels = {};
 
   document.querySelectorAll(".rgb > input").forEach(input => {
     levels[input.name] = input.value;
   });
+
+  for (let i = 0; i < pixels.data.length; i += 4) {
+    pixels.data[i - 4 * (1280 - split.rShift)] = pixels.data[i];
+    pixels.data[i + 1 - 4 * (1280 - split.gShift)] = pixels.data[i + 1];
+    pixels.data[i + 2 - 4 * (1280 - split.bShift)] = pixels.data[i + 2];
+  }
 
   for (let i = 0; i < pixels.data.length; i += 4) {
     const red = pixels.data[i + 0];
@@ -65,6 +74,9 @@ function effects(pixels) {
       pixels.data[i + 3] = 0;
     }
   }
+
+  const blur = document.querySelector(".blur > input").value;
+  context.globalAlpha = 1 - blur / 100;
 
   return pixels;
 }

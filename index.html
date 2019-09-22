@@ -13,6 +13,18 @@
         <label for="bgImg">Background Image:</label>
         <input type="file" id="bgFile" multiple="false" onChange="uploadBG()">
       </div>
+      <hr>
+      <div class="split">
+        <label for="rShift">Translate Red:</label>
+        <input type="range" min=0 max=1280 value=640 name="rShift">
+        <br>
+        <label for="gShift">Translate Green:</label>
+        <input type="range" min=0 max=1280 value=640 name="gShift">
+        <br>
+        <label for="bShift">Translate Blue:</label>
+        <input type="range" min=0 max=1280 value=640 name="bShift">
+      </div>
+      <hr>
       <div class="rgb">
         <label for="rmin">Red Min:</label>
         <input type="range" min=0 max=255 value=0 name="rmin">
@@ -28,13 +40,15 @@
         <input type="range" min=0 max=255 value=0 name="bmin">
         <label for="bmax">Blue Max:</label>
         <input type="range" min=0 max=255 value=255 name="bmax">
-        <p><button onClick="takePhoto()">Take Photo</button></p>
       </div>
+      <hr>
       <div class="blur">
         <label for="blur">Blur:</label>
-        <input type="range" min=0 max=99 value=0 name="blur">
+        <input type="range" min=0 max=90 value=0 name="blur">
       </div>
     </div>
+    <hr>
+    <p><button onClick="takePhoto()">Take Photo</button></p>
     <canvas class="photo"></canvas>
     <video class="player"></video>
     <div class="strip"></div>
